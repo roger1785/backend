@@ -1,7 +1,11 @@
+const products = [
+  { id: 1, name: "Laptop", price: 1200 },
+  { id: 2, name: "Mouse", price: 20 },
+];
+
 export const getProducts = (req, res) => {
   res.json(products);
 };
-
 
 export const getProductById = (req, res) => {
   // const id = Number(req.params.id);
@@ -20,9 +24,15 @@ export const getProductById = (req, res) => {
   }
 
   res.json(product);
-}
+};
 
-const products = [
-  { id: 1, name: "Laptop", price: 1200 },
-  { id: 2, name: "Mouse", price: 20 },
-];  
+export const createProduct = (req, res) => {
+  const newProduct = {
+    id: Date.now(),
+    name: req.body.name,
+    price: req.body.price,
+  };
+
+  products.push(newProduct);
+  res.status(201).json(newProduct);
+};
