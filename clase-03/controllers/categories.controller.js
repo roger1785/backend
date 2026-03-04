@@ -27,20 +27,6 @@ export const getCategoryById = (req, res) => {
   res.json(category);
 }
 
-  // console.log(typeof req.params.id, typeof id, id, isNaN(id));
-
-  if (isNaN(id)) {
-    return res.status(400).json({ error: "Invalid product ID" });
-  }
-
-  const product = products.find((p) => p.id === id);
-
-  if (!product) {
-    return res.status(404).json({ error: "Product not found" });
-  }
-
-  res.json(product);
-;
 
 export const createCategory = (req, res) => {
   const newCategory = {
