@@ -2,6 +2,11 @@ import { Router } from "express";
 
 const router = Router();
 
+const categories = [
+  { id: 1, name: "Electronics", description: "Electronic devices" },
+  { id: 2, name: "Accessories", description: "Device accessories" },
+];
+
 router.get("/", (req, res) => {
   res.json(categories);
 });
