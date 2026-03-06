@@ -70,8 +70,20 @@ export const deleteCategory = (req, res) => {
   categories.splice(categoryIndex, 1);
 
   res.status(204).send();
+  
 }; 
 
+export const searchCategory = async (req, res) => {
+  const { name } = req.query;
 
+  if (!name) {
+    return res.status(422).json({ error: "Name is required" });
+  }
 
- 
+  const categories = await Category.find({
+    name: { $regex: name, $options: "i" },
+  });
+
+  res.json(categories);
+
+};
