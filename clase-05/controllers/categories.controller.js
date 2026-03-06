@@ -1,3 +1,6 @@
+import Category from "../models/Category.js";
+
+
 const categories = [
   { id: 1, name: "Electronics", description: "Electronic devices" },
   { id: 2, name: "Accessories", description: "Device accessories" },
