@@ -128,3 +128,5 @@ export const searchProduct = async (req, res) => {
 
   // res.json(filtrados);
 };
+
+

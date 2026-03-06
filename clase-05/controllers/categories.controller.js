@@ -3,9 +3,15 @@ const categories = [
   { id: 2, name: "Accessories", description: "Device accessories" },
 ];
 
-export const getCategories = (req, res) => {
+// export const getCategories = (req, res) => {
+//   res.json(categories);
+// };
+
+export const getCategories = async (req, res) => {
+  const categories = await Category.find();
   res.json(categories);
 };
+
 
 export const getCategoryById = (req, res) => {
   // const id = Number(req.params.id);
@@ -87,3 +93,4 @@ export const searchCategory = async (req, res) => {
   res.json(categories);
 
 };
+
