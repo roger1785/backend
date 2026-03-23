@@ -5,7 +5,7 @@ export const getProducts = async (req, res) => {
   try {
     const products = await Product.find()
     .populate("category", "name")
-    .populate("owner ", "email");
+    .populate("owner", "email");
 
     res.json(products);
   } catch (error) {
@@ -35,7 +35,7 @@ export const getProductById = async (req, res) => {
 };
 
 export const createProduct = async (req, res) => {
-  return res.json(req.user);
+  // return res.json(req.user);
   try {
     const category = await Category.findById(req.body.category);
 
@@ -70,6 +70,22 @@ export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
+    const product = await Product.findById(id);
+
+    if(!product){
+      return res.status(404).json({ error: "Product not found" });
+      
+    }
+
+
+    if(product.owner.toString() !== req.user.id){
+      return res.status(403).json({ error: "You don't have permissions to update this product" });
+    };
+
+
+    // return res.json("Probando");
+
+    
     const category = await Category.findById(req.body.category);
 
     if (!category) {
